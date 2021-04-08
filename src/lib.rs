@@ -166,6 +166,13 @@ pub trait PrimeField: Field + From<u64> {
     /// returned by [`PrimeField::to_repr`].
     fn from_repr(_: Self::Repr) -> Option<Self>;
 
+    /// Converts a byte representation of a field element into an element of this prime 
+    /// field, reducing the input to a congruent value if the input is not canonical.
+    ///
+    /// The byte representation is interpreted with the same endianness as elements
+    /// returned by [`PrimeField::to_repr`].
+    fn from_repr_reduced(_: Self::Repr) -> Self;
+
     /// Converts an element of the prime field into the standard byte representation for
     /// this field.
     ///
