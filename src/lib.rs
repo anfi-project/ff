@@ -55,7 +55,7 @@ pub trait Field:
     + for<'a> SubAssign<&'a Self>
 {
     /// Returns an element chosen uniformly at random using a user-provided RNG.
-    fn random(rng: impl RngCore) -> Self;
+    fn random<R>(rng: &mut R) -> Self where R: RngCore;
 
     /// Returns the zero element of the field, the additive identity.
     fn zero() -> Self;
@@ -219,6 +219,10 @@ pub trait PrimeField: Field + From<u64> {
     /// This is the number of leading zero bits in the little-endian bit representation of
     /// `modulus - 1`.
     const S: u32;
+
+    /// Constant representing the modulus
+    /// q = 0x73eda753299d7d483339d80809a1d80553bda402fffe5bfeffffffff00000001
+    const MODULUS: Self;
 
     /// Returns the `2^s` root of unity.
     ///
