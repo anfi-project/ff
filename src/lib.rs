@@ -221,7 +221,6 @@ pub trait PrimeField: Field + From<u64> {
     const S: u32;
 
     /// Constant representing the modulus
-    /// q = 0x73eda753299d7d483339d80809a1d80553bda402fffe5bfeffffffff00000001
     const MODULUS: Self;
 
     /// Returns the `2^s` root of unity.
